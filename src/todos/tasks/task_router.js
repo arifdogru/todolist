@@ -48,14 +48,14 @@ import {
       }
     });
   
-    // v1/user
+    // v1/task
     router.patch("/", async (req, res) => {
       let email = undefined;
       try {
         email = req.body.email;
         const result = await update(req.body);
         const response = prepare_response_message(
-          "User updated succesfully",
+          "Task updated succesfully",
           result, {
             decription: "GET_USER_BY_ID",
             type: "GET",
@@ -77,7 +77,7 @@ import {
       try {
         const result = await remove(req.body._id);
         const response = prepare_response_message(
-          "User deleted succesfully",
+          "Task deleted succesfully",
           result,
           null
         );
@@ -87,14 +87,14 @@ import {
       }
     });
   
-    router.get("/:userId", async (req, res, next) => {
+    router.get("/:taskId", async (req, res, next) => {
       try {
         const result = await find_by_id(req.params.userId);
         if (result) {
           const response = prepare_response_message(
             `${result.name} ${result.surName} information is.. `,
             result, {
-              decription: "GET_ALL_USERS",
+              decription: "GET_ALL_TASKS",
               type: "GET",
               url: `${req.protocol}://${req.get("host")}${req.baseUrl}/`
             }
@@ -134,7 +134,7 @@ import {
           const response = prepare_response_message(
             `${result.name.first} ${result.name.last} information is..`,
             result, {
-              decription: "GET_USER",
+              decription: "GET_TASK",
               type: "GET",
               url: `${req.protocol}://${req.get("host")}${req.baseUrl}/eml/${result.email}`
             }

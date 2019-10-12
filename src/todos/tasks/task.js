@@ -7,16 +7,13 @@ let TaskSchema = new Schema({
     required: true
   },
 
-  // Kullanıcı telefon numarası
   description: {
     type: String,
     required: true
   },
-
-  // TODO: fill the status name
   status: {
     type: String,
-    default: "Pending"
+    default: "INCOMPLATED"
   }
 }, {
   timestamps: true
