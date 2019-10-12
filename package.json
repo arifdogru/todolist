@@ -1,0 +1,25 @@
+{
+  "name": "todolist-backend",
+  "version": "0.0.1",
+  "description": "simple version of todolist",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arifdogru/todolist.git"
+  },
+  "keywords": [
+    "nodejs",
+    "expressjs",
+    "reactjs",
+    "redux"
+  ],
+  "author": "Arif Dogru",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/arifdogru/todolist/issues"
+  },
+  "homepage": "https://github.com/arifdogru/todolist#readme"
+}
