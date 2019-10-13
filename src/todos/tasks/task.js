@@ -8,12 +8,11 @@ let TaskSchema = new Schema({
   },
 
   description: {
-    type: String,
-    required: true
+    type: String
   },
-  status: {
-    type: String,
-    default: "INCOMPLATED"
+  complated: {
+    type: Boolean,
+    default: false //INCOMPLATED, COMPLATED
   }
 }, {
   timestamps: true

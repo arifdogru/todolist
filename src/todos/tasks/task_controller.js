@@ -15,7 +15,7 @@ export const save = async parameters => {
     const newTask = new Task({
       name: parameters.name,
       description: parameters.description,
-      status: parameters.status
+      complated: parameters.complated
     });
     const result = await newTask.save();
     return result;
