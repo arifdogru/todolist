@@ -14,7 +14,8 @@ import {
     update,
     remove,
     find_by_id,
-    find_all
+    find_all,
+    find_by_status
   } from "./task_controller";
   
   /**
@@ -26,11 +27,9 @@ import {
     db
   }) => {
     let router = Router();
-    // v1/task
+    // v1/tasks
     router.post("/", async (req, res) => {
-      let email = undefined;
       try {
-        email = req.body.email;
         const result = await save(req.body);
         const response = prepare_response_message("Task saved succesfully", result, {
           decription: "GET_TASK_BY_ID",
@@ -39,25 +38,23 @@ import {
         });
         res.status(201).json(response);
       } catch (error) {
-        /*let errorMessage = error.errmsg;
-        if (errorMessage.includes("duplicate key error collection: todolist.task index: email_1 dup key")) {
+        let errorMessage = error.errmsg;
+        /*if (errorMessage.includes("duplicate key error collection: todolist.task index: email_1 dup key")) {
           prepare_error_message(email + " already exist", res);
-        } else {
+        } else {*/
           prepare_error_message("Technical Error ", res);
-        }*/
+        //}
       }
     });
   
     // v1/task
     router.patch("/", async (req, res) => {
-      let email = undefined;
       try {
-        email = req.body.email;
         const result = await update(req.body);
         const response = prepare_response_message(
           "Task updated succesfully",
           result, {
-            decription: "GET_USER_BY_ID",
+            decription: "GET_TASK_BY_ID",
             type: "GET",
             url: `${req.protocol}://${req.get("host")}${req.originalUrl}/${req.body._id}`
           }
@@ -65,11 +62,11 @@ import {
         res.status(201).json(response);
       } catch (error) { // duplicate key error collection: provision.users index: email_1 dup key
         let errorMessage = error.errmsg;
-        if (errorMessage.includes("duplicate key error collection: provision.users index: email_1 dup key")) {
+        /*if (errorMessage.includes("duplicate key error collection: provision.users index: email_1 dup key")) {
           prepare_error_message(email + " already exist", res);
-        } else {
+        } else {*/
           prepare_error_message("Technical Error ", res);
-        }
+        //}
       }
     });
   
@@ -89,10 +86,10 @@ import {
   
     router.get("/:taskId", async (req, res, next) => {
       try {
-        const result = await find_by_id(req.params.userId);
+        const result = await find_by_id(req.params.taskId);
         if (result) {
           const response = prepare_response_message(
-            `${result.name} ${result.surName} information is.. `,
+            `${result.name} information is.. `,
             result, {
               decription: "GET_ALL_TASKS",
               type: "GET",
@@ -126,20 +123,14 @@ import {
     });
   
   
-    // /v1/task/eml/email
-    router.get("/eml/:email", async (req, res, next) => {
+    // /v1/task/st/status
+    router.get("/st/:status", async (req, res, next) => {
       try {
-        const result = await find_by_email(req.params.email);
+        const result = await find_by_status(req.params.status);
         if (result) {
-          const response = prepare_response_message(
-            `${result.name.first} ${result.name.last} information is..`,
-            result, {
-              decription: "GET_TASK",
-              type: "GET",
-              url: `${req.protocol}://${req.get("host")}${req.baseUrl}/eml/${result.email}`
-            }
-          );
+          const response = prepare_response_message_for_list("", result);
           res.status(200).json(response);
+
         } else {
           no_valid_entry_info(res);
         }
@@ -147,27 +138,5 @@ import {
         prepare_error_message(error, res);
       }
     });
-  
-    router.get("/get/taskinfo", async (req, res, next) => {
-      try {
-        const result = await find_by_id(req.body.logged_user_id);
-        if (result) {
-          const response = prepare_response_message(
-            `${result.name} ${result.surName} information is.. `,
-            result, {
-              decription: "GET_ALL_TASKS",
-              type: "GET",
-              url: `${req.protocol}://${req.get("host")}${req.baseUrl}/`
-            }
-          );
-          res.status(200).json(response);
-        } else {
-          no_valid_entry_info(res);
-        }
-      } catch (error) {
-        prepare_error_message(error, res);
-      }
-    });
-  
     return router;
   };
