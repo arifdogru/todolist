@@ -15,7 +15,7 @@ export const save = async parameters => {
     const newTask = new Task({
       name: parameters.name,
       description: parameters.description,
-      complated: parameters.complated
+      completed: parameters.completed
     });
     const result = await newTask.save();
     return result;
@@ -36,7 +36,7 @@ export const update = async parameters => {
         console.log("Key ", key, " value: ", value);
     }
 
-    const result = await Task.update({
+    const result = await Task.updateMany({
       _id: id
     }, {
       $set: updateOperations
@@ -50,7 +50,7 @@ export const update = async parameters => {
 
 export const remove = async deleted_id => {
   try {
-    const result = Task.remove({
+    const result = Task.deleteOne({
       _id: deleted_id
     }).exec();
     return result;
@@ -63,7 +63,7 @@ export const find_by_id = async id => {
   try {
     const task = await Task.findOne({
       _id: id
-    }).select("_id name description status createdAt updatedAt").exec();
+    }).select("_id name description completed createdAt updatedAt").exec();
     return task;
   } catch (error) {
     throw error;
@@ -73,7 +73,7 @@ export const find_by_id = async id => {
 export const find_all = async (parameters) => {
   try {
     const results = await Task.find()
-      .select("_id name description status createdAt updatedAt").exec();
+      .select("_id name description completed createdAt updatedAt").exec();
 
     console.log("****************************** Result -> ", results);
 
@@ -86,7 +86,7 @@ export const find_all = async (parameters) => {
 export const find_for_pager = async (parameters, limit, skip) => {
   try {
     const results = await Task.find()
-      .select("_id name description status createdAt updatedAt")
+      .select("_id name description completed createdAt updatedAt")
       .limit(parseInt(limit))
       .skip(parseInt(skip))
       .exec();
@@ -110,7 +110,7 @@ export const find_by_status = async status => {
     })
       .where("status")
       .equals(status)
-      .select("_id name description status createdAt updatedAt").exec();
+      .select("_id name description completed createdAt updatedAt").exec();
     return result;
   } catch (error) {
     throw error;

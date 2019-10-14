@@ -8,7 +8,7 @@ mongoose.plugin(schema => {
 
 // return the database connection
 export default callback => {
-  let db = mongoose.connect(config.mongoURL, { useNewUrlParser: true });
+  let db = mongoose.connect(config.mongoURL, { useUnifiedTopology: true ,useNewUrlParser:true});
   mongoose.Promise = global.Promise;
   mongoose.set("useCreateIndex", true);
   mongoose.set("useNewUrlParser", true);

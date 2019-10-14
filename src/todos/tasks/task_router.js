@@ -50,6 +50,7 @@ import {
     // v1/task
     router.patch("/", async (req, res) => {
       try {
+        console.log("Update req body:",req.body)
         const result = await update(req.body);
         const response = prepare_response_message(
           "Task updated succesfully",
@@ -72,6 +73,8 @@ import {
   
     router.delete("/", async (req, res) => {
       try {
+        console.log("Req Body")
+        console.log(req.body)
         const result = await remove(req.body._id);
         const response = prepare_response_message(
           "Task deleted succesfully",
