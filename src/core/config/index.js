@@ -1,7 +1,7 @@
 let url;
 let backend;
 let frontend;
-
+/*
 if (process.env.NODE_ENV === "development") {
 
   url = "mongodb://localhost:27017/todolist";
@@ -12,9 +12,13 @@ if (process.env.NODE_ENV === "development") {
   back_end = "https://todolist-backend-arifdogru.herokuapp.com:31571/v1";
   front_end = "https://todolist-frontend-arifdogru.herokuapp.com:33571";
 }
+*/
+url = "mongodb://heroku_97q29l3k:123456db@ds135128.mlab.com:35128/heroku_97q29l3k";
+back_end = "https://todolist-backend-arifdogru.herokuapp.com:31571/v1";
+front_end = "https://todolist-frontend-arifdogru.herokuapp.com:33571";
 
 export default {
-  port: 22571,
+  port: 31571,
   mongoURL: url,
   bodyLimit: "100mb",
   backend: backend,
