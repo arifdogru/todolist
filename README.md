@@ -5,3 +5,7 @@ simple version of todolist
 In the project directory, you can run:
 
 ### `npm run dev`
+
+### `npm run build`
+
+### `npm run start` //prod
