@@ -22,6 +22,7 @@ app.use(bodyParser.json({
 
 // api routes V...
 app.use("/v1", route);
+
 app.server.listen(config.port);
 console.log(`TodoList Services Started on port ${app.server.address().port} at ${new Date().toISOString()}`);
 console.log("Appserver -> ", app.server.address());
