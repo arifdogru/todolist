@@ -4,7 +4,9 @@ simple version of todolist
 
 In the project directory, you can run:
 
-### `npm run dev`
+### `npm install`
+
+### `npm run dev` //localhost
 
 ### `npm run build`
 
