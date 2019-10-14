@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === "development") {
   front_end = "https://todolist-frontend-arifdogru.herokuapp.com:33571";
 }
 */
-url = "mongodb://heroku_97q29l3k:123456db@ds135128.mlab.com:35128/heroku_97q29l3k";
+url = "mongodb://arif:123456db@ds135128.mlab.com:35128/heroku_v4jmvmbg";
 backend = "https://todolist-backend-arifdogru.herokuapp.com:31571";
 frontend = "https://todolist-frontend-arifdogru.herokuapp.com:33571";
 
