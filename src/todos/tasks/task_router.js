@@ -1,7 +1,4 @@
-/* eslint-disable no-undef-init */
-/* eslint-disable no-trailing-spaces */
-/* eslint-disable camelcase */
-/* eslint-disable indent */
+
 import {Router} from "express";
 import {
     prepare_error_message,
@@ -39,11 +36,8 @@ import {
         res.status(201).json(response);
       } catch (error) {
         let errorMessage = error.errmsg;
-        /*if (errorMessage.includes("duplicate key error collection: todolist.task index: email_1 dup key")) {
-          prepare_error_message(email + " already exist", res);
-        } else {*/
           prepare_error_message("Technical Error ", res);
-        //}
+
       }
     });
   
@@ -61,11 +55,9 @@ import {
           }
         );
         res.status(201).json(response);
-      } catch (error) { // duplicate key error collection: provision.users index: email_1 dup key
+      } catch (error) { 
         let errorMessage = error.errmsg;
-        /*if (errorMessage.includes("duplicate key error collection: provision.users index: email_1 dup key")) {
-          prepare_error_message(email + " already exist", res);
-        } else {*/
+
           prepare_error_message("Technical Error ", res);
         //}
       }
