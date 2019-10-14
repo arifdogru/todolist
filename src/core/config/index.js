@@ -3,11 +3,11 @@ let backend;
 let frontend;
 
 if (process.env.NODE_ENV === "development") {
-  url = "mongodb://localhost:27017/todolist";
+  url = "mongodb://<dbuser>:<dbpassword>@ds135128.mlab.com:35128/heroku_97q29l3k";
   backend = "http://localhost:22571/v1";
   frontend = "http://localhost:3000";
 } else if (process.env.NODE_ENV === "production") {
-  url = "mongodb://localhost:27017/todolist";
+  url = "mongodb://<dbuser>:<dbpassword>@ds135128.mlab.com:35128/heroku_97q29l3k";
   backend = "http://localhost:22571/v1";
   frontend = "http://localhost:3000";
 }
